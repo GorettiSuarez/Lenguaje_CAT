@@ -1,0 +1,21 @@
+@Prueba 4: Operadores relacionales y estructuras
+define main(){
+	cat dato1;
+	cat dato2;
+
+	kout "Escriba un numero entero: " . /CR;
+	kin dato1;
+
+    kout "Escriba otro numero entero: " . /CR;
+	kin dato2;
+
+	claw (dato1 = dato2){
+		kout "Las variables son iguales" . /CR;
+    } scratch {
+	    claw (dato1 > dato2){
+		    kout "La variable dato1 es mayor" . /CR;
+        } scratch {
+            kout "La variable dato2 es mayor" . /CR;
+        }
+    }
+}

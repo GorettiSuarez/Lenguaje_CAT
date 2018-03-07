@@ -1,0 +1,16 @@
+define main (){
+    cat a ~ 3;
+    cat y ~ 5;
+    cat res;
+    call pepe(a,y) in res;
+    kout a;
+    kout y;
+}
+
+define pepe(cat b, cat c) in (cat z) {
+    b ~ b + 1;
+    c ~ c + 2;
+    kout b;
+    kout c;
+    z ~ 3;
+}

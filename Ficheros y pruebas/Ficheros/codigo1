@@ -1,0 +1,134 @@
+define main (){
+    cat opcion;
+    kout "Selecciona una de las operaciones permitidas: " . /CR;
+    kout " 1. Factorial" . /CR;
+    kout " 2. Potencia " . /CR;
+    kout " 3. Fibonacci " . /CR;
+
+    kin opcion;
+
+    claw(opcion = 1) {
+        @Calculo del factorial
+
+        cat dato;
+        kout "Introduzca un número entero cuyo factorial desea calcular " . /CR;
+
+        kin dato;
+        cat resultado; 
+        call factorial(dato) in resultado; 
+
+        kout "El resultado del calculo del factorial es: " . resultado . /CR;
+
+    } scratch {
+        claw(opcion = 2) {
+            @Calculo de la potencia
+            cat base;
+			cat exponente;
+
+			kout "Introduzca la base de la potencia " . /CR;
+			kin base;
+
+            kout "Introduzca el exponente de la potencia " . /CR;
+			kin exponente;
+
+			cat resultado;
+            call potencia(base, exponente) in resultado; 
+            kout "El resultado del calculo de la potencia  es: " . resultado . /CR;
+    
+        } scratch {
+            claw(opcion = 3) {
+                @Calculo de Fibonacci
+                cat dato;
+
+			    kout "Introduzca la posicion de la rista de fibonacci que desea: " . /CR;
+			    kin dato;
+
+			    cat resultado;
+                call fibo(dato) in resultado; 
+			    kout "El resultado para esta posicion es: " . resultado . /CR;
+
+
+            } scratch {
+                @Error
+                call imprimirError();
+            }
+        
+        }
+        
+    }
+}
+
+
+@EJERCICIO DE FACTORIAL 
+define factorial (cat num) in (cat resultFact) {
+	resultFact ~ 1;
+    meow(num > 1) {
+	    resultFact ~ resultFact * num;
+	    num ~ num - 1;
+    }
+}
+
+
+@EJERCICIO DE FIBONACCI -- Devuelve el valor en la serie de fibonacci para esa posición
+define fibo (cat N) in (cat resultFibo){
+
+    claw (N = 1) {
+        resultFibo ~ 0;
+
+    } scratch {
+
+        claw(N = 2) {
+            resultFibo ~ 1;
+
+        } scratch {
+            cat r1;
+            cat param1 ~ N - 1;
+            call fibo(param1) in r1;
+
+            cat r2;
+            cat param2 ~ N - 2;
+            call fibo(param2) in r2;
+
+            resultFibo ~ r1 + r2;
+        }
+    }
+
+}
+
+
+
+@EJERCICIO CALCULAR POTENCIA
+define potencia (cat base, cat exponente) in (cat resultPot) {
+	cat expo;
+	cat resultado ~ 1;
+
+	claw (exponente < 0) {
+	    expo ~ 0 - exponente;
+    } scratch {
+	    expo ~ exponente;
+
+		claw (base = 0) {
+
+	        claw (exponente = 0) {
+	            halt;
+            } scratch {}
+
+            resultPot ~ 0;
+        } scratch {}
+    }
+
+    fishy (cat i ~ 0; i < expo; i ~ i + 1) {
+	    resultado ~ resultado * base;
+        resultPot ~ resultado;
+    }
+
+    claw (exponente < 0) {
+	    resultado ~ 1 / resultado;
+        resultPot ~ resultado;
+    } scratch {}
+
+}
+
+define imprimirError() {
+    kout "No ha dicho una opción válida" . /CR;
+}

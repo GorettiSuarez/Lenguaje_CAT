@@ -1,0 +1,4 @@
+#!/bin/bash
+#gcc IQ.o Qlib.c -o IQ
+./compilador codigo1
+./IQ ejecutableQ.q.c 

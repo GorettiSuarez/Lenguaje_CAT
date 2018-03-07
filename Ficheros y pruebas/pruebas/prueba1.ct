@@ -1,0 +1,16 @@
+@Prueba 1: Declaraciones y Asignaciones. Impresión de variables.
+@Funcion principal del programa. No retorna nada.
+define main (){
+    cat entero;
+    kitty float;
+    kitten double;
+
+	entero ~ 1;
+	float ~ 1.32;
+	double ~ 0.33333333;
+	
+	kout "El valor de la variable entero es: " . entero . /CR;
+	kout "El valor de la variable float es: " . float . /CR;
+    kout "El valor de la variable double es: " . double . /CR;
+}
+

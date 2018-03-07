@@ -1,0 +1,18 @@
+@Prueba 3: Operadores aritméticos
+define main(){
+	kitty variable1 ~ 6.2;
+	kitty variable2 ~ 2.3;
+
+	kitty solucion ~ variable1 + variable2;
+	kout "La solucion de la suma de las variables es:". solucion . /CR;
+
+	solucion ~ variable1 - variable2;
+	kout "La solucion de la resta de las variables es:". solucion. /CR;
+
+    solucion ~ variable1 * variable2;
+	kout "La solucion de la multiplicacion de las variables es:". solucion . /CR;
+
+    solucion ~ variable1 / variable2;
+	kout "La solucion de la division de las variables es:". solucion . /CR;
+    
+} 

@@ -1,0 +1,8 @@
+@ Prueba 2: Entrada  y Salida
+define main(){
+	cat dato;
+	kout "Escriba un numero entero: " . /CR;
+	kin dato;
+	kout dato;
+}
+

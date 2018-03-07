@@ -1,0 +1,12 @@
+#!/bin/bash
+rm "compilador"
+rm "bison.tab.c"
+rm "bison.output"
+rm "bison.tab.h"
+rm "lex.yy.x"
+
+clear
+bison -v -d bison.y 
+flex flex.l 
+g++ -o compilador bison.tab.c lex.yy.c SymbolTable.cpp breaklist.cpp FunctionsList.cpp
+chmod +x compilador

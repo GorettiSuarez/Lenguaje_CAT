@@ -1,0 +1,2062 @@
+Terminales no usados en la gramática
+
+   DOSPUNTOS
+
+
+Gramática
+
+    0 $accept: programa $end
+
+    1 $@1: %empty
+
+    2 $@2: %empty
+
+    3 $@3: %empty
+
+    4 programa: $@1 FUNCION MAIN ABREPARENTESIS CIERRAPARENTESIS $@2 bloque_llaves $@3 conjunto_funciones
+
+    5 conjunto_funciones: funcion conjunto_funciones
+    6                   | %empty
+
+    7 $@4: %empty
+
+    8 funcion: FUNCION IDENTIF ABREPARENTESIS CIERRAPARENTESIS $@4 bloque_llaves
+
+    9 $@5: %empty
+
+   10 $@6: %empty
+
+   11 funcion: FUNCION IDENTIF ABREPARENTESIS $@5 parametros CIERRAPARENTESIS IN ABREPARENTESIS tipo IDENTIF CIERRAPARENTESIS $@6 bloque_llaves
+
+   12 parametros: tipo IDENTIF
+   13           | tipo IDENTIF SEPARADOR parametros
+
+   14 bloque_llaves: ABRELLAVE lista_instrucciones CIERRALLAVE
+
+   15 lista_instrucciones: instruccion lista_instrucciones
+   16                    | %empty
+
+   17 imprimir: IDENTIF
+   18         | CKITTENVALUE
+   19         | CKITTYVALUE
+   20         | imprimir CONCATENA imprimir
+   21         | CATVALUE
+   22         | SALTOLINEA
+   23         | KITTYVALUE
+   24         | KITTENVALUE
+
+   25 instruccion: asignacion
+   26            | declaracion
+   27            | ESCRIBEPANTALLA imprimir PUNTOYCOMA
+   28            | LEETECLADO IDENTIF PUNTOYCOMA
+
+   29 $@7: %empty
+
+   30 @8: %empty
+
+   31 @9: %empty
+
+   32 $@10: %empty
+
+   33 $@11: %empty
+
+   34 instruccion: FOR $@7 ABREPARENTESIS asignacion @8 exp @9 PUNTOYCOMA IDENTIF $@10 ASIGNA exp CIERRAPARENTESIS $@11 bloque_llaves
+
+   35 @12: %empty
+
+   36 @13: %empty
+
+   37 instruccion: WHILE @12 ABREPARENTESIS exp CIERRAPARENTESIS @13 bloque_llaves
+
+   38 @14: %empty
+
+   39 @15: %empty
+
+   40 $@16: %empty
+
+   41 $@17: %empty
+
+   42 instruccion: IF @14 ABREPARENTESIS exp CIERRAPARENTESIS @15 bloque_llaves $@16 ELSE $@17 bloque_llaves
+   43            | LLAMADA IDENTIF ABREPARENTESIS CIERRAPARENTESIS PUNTOYCOMA
+
+   44 $@18: %empty
+
+   45 instruccion: LLAMADA IDENTIF ABREPARENTESIS $@18 parametros_instruccion CIERRAPARENTESIS IN IDENTIF PUNTOYCOMA
+   46            | HALT PUNTOYCOMA
+   47            | BREAK PUNTOYCOMA
+
+   48 parametros_instruccion: IDENTIF SEPARADOR parametros_instruccion
+   49                       | IDENTIF
+
+   50 declaracion: tipo IDENTIF PUNTOYCOMA
+
+   51 tipo: CAT
+   52     | KITTY
+   53     | KITTEN
+
+   54 $@19: %empty
+
+   55 asignacion: tipo IDENTIF $@19 ASIGNA exp PUNTOYCOMA
+   56           | IDENTIF ASIGNA exp PUNTOYCOMA
+
+   57 exp: exp RESTA exp
+   58    | exp MULTIPLICACION exp
+   59    | exp SUMA exp
+   60    | exp DIVISION exp
+   61    | exp DISTINTO exp
+   62    | exp IGUAL exp
+   63    | exp MAYORQUE exp
+   64    | exp MENORQUE exp
+   65    | exp MENORIGUAL exp
+   66    | exp MAYORIGUAL exp
+   67    | exp OR exp
+   68    | exp AND exp
+   69    | NOT exp
+   70    | ABREPARENTESIS exp CIERRAPARENTESIS
+   71    | valor
+
+   72 valor: CATVALUE
+   73      | KITTYVALUE
+   74      | KITTENVALUE
+   75      | IDENTIF
+
+
+Terminales con las reglas donde aparecen
+
+$end (0) 0
+error (256)
+CAT (258) 51
+KITTY (259) 52
+KITTEN (260) 53
+IDENTIF (261) 8 11 12 13 17 28 34 43 45 48 49 50 55 56 75
+CKITTYVALUE (262) 19
+CKITTENVALUE (263) 18
+KITTENVALUE (264) 24 74
+CATVALUE (265) 21 72
+KITTYVALUE (266) 23 73
+MAIN (267) 4
+ASIGNA (268) 34 55 56
+PUNTOYCOMA (269) 27 28 34 43 45 46 47 50 55 56
+SUMA (270) 59
+RESTA (271) 57
+DIVISION (272) 60
+MULTIPLICACION (273) 58
+IGUAL (274) 62
+DISTINTO (275) 61
+MAYORQUE (276) 63
+MENORQUE (277) 64
+MAYORIGUAL (278) 66
+MENORIGUAL (279) 65
+OR (280) 67
+AND (281) 68
+NOT (282) 69
+LLAMADA (283) 43 45
+SEPARADOR (284) 13 48
+FUNCION (285) 4 8 11
+ABRELLAVE (286) 14
+CIERRALLAVE (287) 14
+ABREPARENTESIS (288) 4 8 11 34 37 42 43 45 70
+CIERRAPARENTESIS (289) 4 8 11 34 37 42 43 45 70
+HALT (290) 46
+DOSPUNTOS (291)
+BREAK (292) 47
+IF (293) 42
+ELSE (294) 42
+WHILE (295) 37
+FOR (296) 34
+LEETECLADO (297) 28
+ESCRIBEPANTALLA (298) 27
+CONCATENA (299) 20
+SALTOLINEA (300) 22
+IN (301) 11 45
+
+
+No terminales con las reglas donde aparecen
+
+$accept (47)
+    en la izquierda: 0
+programa (48)
+    en la izquierda: 4, en la derecha: 0
+$@1 (49)
+    en la izquierda: 1, en la derecha: 4
+$@2 (50)
+    en la izquierda: 2, en la derecha: 4
+$@3 (51)
+    en la izquierda: 3, en la derecha: 4
+conjunto_funciones (52)
+    en la izquierda: 5 6, en la derecha: 4 5
+funcion (53)
+    en la izquierda: 8 11, en la derecha: 5
+$@4 (54)
+    en la izquierda: 7, en la derecha: 8
+$@5 (55)
+    en la izquierda: 9, en la derecha: 11
+$@6 (56)
+    en la izquierda: 10, en la derecha: 11
+parametros (57)
+    en la izquierda: 12 13, en la derecha: 11 13
+bloque_llaves (58)
+    en la izquierda: 14, en la derecha: 4 8 11 34 37 42
+lista_instrucciones (59)
+    en la izquierda: 15 16, en la derecha: 14 15
+imprimir (60)
+    en la izquierda: 17 18 19 20 21 22 23 24, en la derecha: 20 27
+instruccion (61)
+    en la izquierda: 25 26 27 28 34 37 42 43 45 46 47, en la derecha:
+    15
+$@7 (62)
+    en la izquierda: 29, en la derecha: 34
+@8 (63)
+    en la izquierda: 30, en la derecha: 34
+@9 (64)
+    en la izquierda: 31, en la derecha: 34
+$@10 (65)
+    en la izquierda: 32, en la derecha: 34
+$@11 (66)
+    en la izquierda: 33, en la derecha: 34
+@12 (67)
+    en la izquierda: 35, en la derecha: 37
+@13 (68)
+    en la izquierda: 36, en la derecha: 37
+@14 (69)
+    en la izquierda: 38, en la derecha: 42
+@15 (70)
+    en la izquierda: 39, en la derecha: 42
+$@16 (71)
+    en la izquierda: 40, en la derecha: 42
+$@17 (72)
+    en la izquierda: 41, en la derecha: 42
+$@18 (73)
+    en la izquierda: 44, en la derecha: 45
+parametros_instruccion (74)
+    en la izquierda: 48 49, en la derecha: 45 48
+declaracion (75)
+    en la izquierda: 50, en la derecha: 26
+tipo (76)
+    en la izquierda: 51 52 53, en la derecha: 11 12 13 50 55
+asignacion (77)
+    en la izquierda: 55 56, en la derecha: 25 34
+$@19 (78)
+    en la izquierda: 54, en la derecha: 55
+exp (79)
+    en la izquierda: 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71,
+    en la derecha: 34 37 42 55 56 57 58 59 60 61 62 63 64 65 66 67
+    68 69 70
+valor (80)
+    en la izquierda: 72 73 74 75, en la derecha: 71
+
+
+Estado 0
+
+    0 $accept: . programa $end
+
+    $default  reduce usando la regla 1 ($@1)
+
+    programa  ir al estado 1
+    $@1       ir al estado 2
+
+
+Estado 1
+
+    0 $accept: programa . $end
+
+    $end  desplazar e ir al estado 3
+
+
+Estado 2
+
+    4 programa: $@1 . FUNCION MAIN ABREPARENTESIS CIERRAPARENTESIS $@2 bloque_llaves $@3 conjunto_funciones
+
+    FUNCION  desplazar e ir al estado 4
+
+
+Estado 3
+
+    0 $accept: programa $end .
+
+    $default  aceptar
+
+
+Estado 4
+
+    4 programa: $@1 FUNCION . MAIN ABREPARENTESIS CIERRAPARENTESIS $@2 bloque_llaves $@3 conjunto_funciones
+
+    MAIN  desplazar e ir al estado 5
+
+
+Estado 5
+
+    4 programa: $@1 FUNCION MAIN . ABREPARENTESIS CIERRAPARENTESIS $@2 bloque_llaves $@3 conjunto_funciones
+
+    ABREPARENTESIS  desplazar e ir al estado 6
+
+
+Estado 6
+
+    4 programa: $@1 FUNCION MAIN ABREPARENTESIS . CIERRAPARENTESIS $@2 bloque_llaves $@3 conjunto_funciones
+
+    CIERRAPARENTESIS  desplazar e ir al estado 7
+
+
+Estado 7
+
+    4 programa: $@1 FUNCION MAIN ABREPARENTESIS CIERRAPARENTESIS . $@2 bloque_llaves $@3 conjunto_funciones
+
+    $default  reduce usando la regla 2 ($@2)
+
+    $@2  ir al estado 8
+
+
+Estado 8
+
+    4 programa: $@1 FUNCION MAIN ABREPARENTESIS CIERRAPARENTESIS $@2 . bloque_llaves $@3 conjunto_funciones
+
+    ABRELLAVE  desplazar e ir al estado 9
+
+    bloque_llaves  ir al estado 10
+
+
+Estado 9
+
+   14 bloque_llaves: ABRELLAVE . lista_instrucciones CIERRALLAVE
+
+    CAT              desplazar e ir al estado 11
+    KITTY            desplazar e ir al estado 12
+    KITTEN           desplazar e ir al estado 13
+    IDENTIF          desplazar e ir al estado 14
+    LLAMADA          desplazar e ir al estado 15
+    HALT             desplazar e ir al estado 16
+    BREAK            desplazar e ir al estado 17
+    IF               desplazar e ir al estado 18
+    WHILE            desplazar e ir al estado 19
+    FOR              desplazar e ir al estado 20
+    LEETECLADO       desplazar e ir al estado 21
+    ESCRIBEPANTALLA  desplazar e ir al estado 22
+
+    $default  reduce usando la regla 16 (lista_instrucciones)
+
+    lista_instrucciones  ir al estado 23
+    instruccion          ir al estado 24
+    declaracion          ir al estado 25
+    tipo                 ir al estado 26
+    asignacion           ir al estado 27
+
+
+Estado 10
+
+    4 programa: $@1 FUNCION MAIN ABREPARENTESIS CIERRAPARENTESIS $@2 bloque_llaves . $@3 conjunto_funciones
+
+    $default  reduce usando la regla 3 ($@3)
+
+    $@3  ir al estado 28
+
+
+Estado 11
+
+   51 tipo: CAT .
+
+    $default  reduce usando la regla 51 (tipo)
+
+
+Estado 12
+
+   52 tipo: KITTY .
+
+    $default  reduce usando la regla 52 (tipo)
+
+
+Estado 13
+
+   53 tipo: KITTEN .
+
+    $default  reduce usando la regla 53 (tipo)
+
+
+Estado 14
+
+   56 asignacion: IDENTIF . ASIGNA exp PUNTOYCOMA
+
+    ASIGNA  desplazar e ir al estado 29
+
+
+Estado 15
+
+   43 instruccion: LLAMADA . IDENTIF ABREPARENTESIS CIERRAPARENTESIS PUNTOYCOMA
+   45            | LLAMADA . IDENTIF ABREPARENTESIS $@18 parametros_instruccion CIERRAPARENTESIS IN IDENTIF PUNTOYCOMA
+
+    IDENTIF  desplazar e ir al estado 30
+
+
+Estado 16
+
+   46 instruccion: HALT . PUNTOYCOMA
+
+    PUNTOYCOMA  desplazar e ir al estado 31
+
+
+Estado 17
+
+   47 instruccion: BREAK . PUNTOYCOMA
+
+    PUNTOYCOMA  desplazar e ir al estado 32
+
+
+Estado 18
+
+   42 instruccion: IF . @14 ABREPARENTESIS exp CIERRAPARENTESIS @15 bloque_llaves $@16 ELSE $@17 bloque_llaves
+
+    $default  reduce usando la regla 38 (@14)
+
+    @14  ir al estado 33
+
+
+Estado 19
+
+   37 instruccion: WHILE . @12 ABREPARENTESIS exp CIERRAPARENTESIS @13 bloque_llaves
+
+    $default  reduce usando la regla 35 (@12)
+
+    @12  ir al estado 34
+
+
+Estado 20
+
+   34 instruccion: FOR . $@7 ABREPARENTESIS asignacion @8 exp @9 PUNTOYCOMA IDENTIF $@10 ASIGNA exp CIERRAPARENTESIS $@11 bloque_llaves
+
+    $default  reduce usando la regla 29 ($@7)
+
+    $@7  ir al estado 35
+
+
+Estado 21
+
+   28 instruccion: LEETECLADO . IDENTIF PUNTOYCOMA
+
+    IDENTIF  desplazar e ir al estado 36
+
+
+Estado 22
+
+   27 instruccion: ESCRIBEPANTALLA . imprimir PUNTOYCOMA
+
+    IDENTIF       desplazar e ir al estado 37
+    CKITTYVALUE   desplazar e ir al estado 38
+    CKITTENVALUE  desplazar e ir al estado 39
+    KITTENVALUE   desplazar e ir al estado 40
+    CATVALUE      desplazar e ir al estado 41
+    KITTYVALUE    desplazar e ir al estado 42
+    SALTOLINEA    desplazar e ir al estado 43
+
+    imprimir  ir al estado 44
+
+
+Estado 23
+
+   14 bloque_llaves: ABRELLAVE lista_instrucciones . CIERRALLAVE
+
+    CIERRALLAVE  desplazar e ir al estado 45
+
+
+Estado 24
+
+   15 lista_instrucciones: instruccion . lista_instrucciones
+
+    CAT              desplazar e ir al estado 11
+    KITTY            desplazar e ir al estado 12
+    KITTEN           desplazar e ir al estado 13
+    IDENTIF          desplazar e ir al estado 14
+    LLAMADA          desplazar e ir al estado 15
+    HALT             desplazar e ir al estado 16
+    BREAK            desplazar e ir al estado 17
+    IF               desplazar e ir al estado 18
+    WHILE            desplazar e ir al estado 19
+    FOR              desplazar e ir al estado 20
+    LEETECLADO       desplazar e ir al estado 21
+    ESCRIBEPANTALLA  desplazar e ir al estado 22
+
+    $default  reduce usando la regla 16 (lista_instrucciones)
+
+    lista_instrucciones  ir al estado 46
+    instruccion          ir al estado 24
+    declaracion          ir al estado 25
+    tipo                 ir al estado 26
+    asignacion           ir al estado 27
+
+
+Estado 25
+
+   26 instruccion: declaracion .
+
+    $default  reduce usando la regla 26 (instruccion)
+
+
+Estado 26
+
+   50 declaracion: tipo . IDENTIF PUNTOYCOMA
+   55 asignacion: tipo . IDENTIF $@19 ASIGNA exp PUNTOYCOMA
+
+    IDENTIF  desplazar e ir al estado 47
+
+
+Estado 27
+
+   25 instruccion: asignacion .
+
+    $default  reduce usando la regla 25 (instruccion)
+
+
+Estado 28
+
+    4 programa: $@1 FUNCION MAIN ABREPARENTESIS CIERRAPARENTESIS $@2 bloque_llaves $@3 . conjunto_funciones
+
+    FUNCION  desplazar e ir al estado 48
+
+    $default  reduce usando la regla 6 (conjunto_funciones)
+
+    conjunto_funciones  ir al estado 49
+    funcion             ir al estado 50
+
+
+Estado 29
+
+   56 asignacion: IDENTIF ASIGNA . exp PUNTOYCOMA
+
+    IDENTIF         desplazar e ir al estado 51
+    KITTENVALUE     desplazar e ir al estado 52
+    CATVALUE        desplazar e ir al estado 53
+    KITTYVALUE      desplazar e ir al estado 54
+    NOT             desplazar e ir al estado 55
+    ABREPARENTESIS  desplazar e ir al estado 56
+
+    exp    ir al estado 57
+    valor  ir al estado 58
+
+
+Estado 30
+
+   43 instruccion: LLAMADA IDENTIF . ABREPARENTESIS CIERRAPARENTESIS PUNTOYCOMA
+   45            | LLAMADA IDENTIF . ABREPARENTESIS $@18 parametros_instruccion CIERRAPARENTESIS IN IDENTIF PUNTOYCOMA
+
+    ABREPARENTESIS  desplazar e ir al estado 59
+
+
+Estado 31
+
+   46 instruccion: HALT PUNTOYCOMA .
+
+    $default  reduce usando la regla 46 (instruccion)
+
+
+Estado 32
+
+   47 instruccion: BREAK PUNTOYCOMA .
+
+    $default  reduce usando la regla 47 (instruccion)
+
+
+Estado 33
+
+   42 instruccion: IF @14 . ABREPARENTESIS exp CIERRAPARENTESIS @15 bloque_llaves $@16 ELSE $@17 bloque_llaves
+
+    ABREPARENTESIS  desplazar e ir al estado 60
+
+
+Estado 34
+
+   37 instruccion: WHILE @12 . ABREPARENTESIS exp CIERRAPARENTESIS @13 bloque_llaves
+
+    ABREPARENTESIS  desplazar e ir al estado 61
+
+
+Estado 35
+
+   34 instruccion: FOR $@7 . ABREPARENTESIS asignacion @8 exp @9 PUNTOYCOMA IDENTIF $@10 ASIGNA exp CIERRAPARENTESIS $@11 bloque_llaves
+
+    ABREPARENTESIS  desplazar e ir al estado 62
+
+
+Estado 36
+
+   28 instruccion: LEETECLADO IDENTIF . PUNTOYCOMA
+
+    PUNTOYCOMA  desplazar e ir al estado 63
+
+
+Estado 37
+
+   17 imprimir: IDENTIF .
+
+    $default  reduce usando la regla 17 (imprimir)
+
+
+Estado 38
+
+   19 imprimir: CKITTYVALUE .
+
+    $default  reduce usando la regla 19 (imprimir)
+
+
+Estado 39
+
+   18 imprimir: CKITTENVALUE .
+
+    $default  reduce usando la regla 18 (imprimir)
+
+
+Estado 40
+
+   24 imprimir: KITTENVALUE .
+
+    $default  reduce usando la regla 24 (imprimir)
+
+
+Estado 41
+
+   21 imprimir: CATVALUE .
+
+    $default  reduce usando la regla 21 (imprimir)
+
+
+Estado 42
+
+   23 imprimir: KITTYVALUE .
+
+    $default  reduce usando la regla 23 (imprimir)
+
+
+Estado 43
+
+   22 imprimir: SALTOLINEA .
+
+    $default  reduce usando la regla 22 (imprimir)
+
+
+Estado 44
+
+   20 imprimir: imprimir . CONCATENA imprimir
+   27 instruccion: ESCRIBEPANTALLA imprimir . PUNTOYCOMA
+
+    PUNTOYCOMA  desplazar e ir al estado 64
+    CONCATENA   desplazar e ir al estado 65
+
+
+Estado 45
+
+   14 bloque_llaves: ABRELLAVE lista_instrucciones CIERRALLAVE .
+
+    $default  reduce usando la regla 14 (bloque_llaves)
+
+
+Estado 46
+
+   15 lista_instrucciones: instruccion lista_instrucciones .
+
+    $default  reduce usando la regla 15 (lista_instrucciones)
+
+
+Estado 47
+
+   50 declaracion: tipo IDENTIF . PUNTOYCOMA
+   55 asignacion: tipo IDENTIF . $@19 ASIGNA exp PUNTOYCOMA
+
+    PUNTOYCOMA  desplazar e ir al estado 66
+
+    $default  reduce usando la regla 54 ($@19)
+
+    $@19  ir al estado 67
+
+
+Estado 48
+
+    8 funcion: FUNCION . IDENTIF ABREPARENTESIS CIERRAPARENTESIS $@4 bloque_llaves
+   11        | FUNCION . IDENTIF ABREPARENTESIS $@5 parametros CIERRAPARENTESIS IN ABREPARENTESIS tipo IDENTIF CIERRAPARENTESIS $@6 bloque_llaves
+
+    IDENTIF  desplazar e ir al estado 68
+
+
+Estado 49
+
+    4 programa: $@1 FUNCION MAIN ABREPARENTESIS CIERRAPARENTESIS $@2 bloque_llaves $@3 conjunto_funciones .
+
+    $default  reduce usando la regla 4 (programa)
+
+
+Estado 50
+
+    5 conjunto_funciones: funcion . conjunto_funciones
+
+    FUNCION  desplazar e ir al estado 48
+
+    $default  reduce usando la regla 6 (conjunto_funciones)
+
+    conjunto_funciones  ir al estado 69
+    funcion             ir al estado 50
+
+
+Estado 51
+
+   75 valor: IDENTIF .
+
+    $default  reduce usando la regla 75 (valor)
+
+
+Estado 52
+
+   74 valor: KITTENVALUE .
+
+    $default  reduce usando la regla 74 (valor)
+
+
+Estado 53
+
+   72 valor: CATVALUE .
+
+    $default  reduce usando la regla 72 (valor)
+
+
+Estado 54
+
+   73 valor: KITTYVALUE .
+
+    $default  reduce usando la regla 73 (valor)
+
+
+Estado 55
+
+   69 exp: NOT . exp
+
+    IDENTIF         desplazar e ir al estado 51
+    KITTENVALUE     desplazar e ir al estado 52
+    CATVALUE        desplazar e ir al estado 53
+    KITTYVALUE      desplazar e ir al estado 54
+    NOT             desplazar e ir al estado 55
+    ABREPARENTESIS  desplazar e ir al estado 56
+
+    exp    ir al estado 70
+    valor  ir al estado 58
+
+
+Estado 56
+
+   70 exp: ABREPARENTESIS . exp CIERRAPARENTESIS
+
+    IDENTIF         desplazar e ir al estado 51
+    KITTENVALUE     desplazar e ir al estado 52
+    CATVALUE        desplazar e ir al estado 53
+    KITTYVALUE      desplazar e ir al estado 54
+    NOT             desplazar e ir al estado 55
+    ABREPARENTESIS  desplazar e ir al estado 56
+
+    exp    ir al estado 71
+    valor  ir al estado 58
+
+
+Estado 57
+
+   56 asignacion: IDENTIF ASIGNA exp . PUNTOYCOMA
+   57 exp: exp . RESTA exp
+   58    | exp . MULTIPLICACION exp
+   59    | exp . SUMA exp
+   60    | exp . DIVISION exp
+   61    | exp . DISTINTO exp
+   62    | exp . IGUAL exp
+   63    | exp . MAYORQUE exp
+   64    | exp . MENORQUE exp
+   65    | exp . MENORIGUAL exp
+   66    | exp . MAYORIGUAL exp
+   67    | exp . OR exp
+   68    | exp . AND exp
+
+    PUNTOYCOMA      desplazar e ir al estado 72
+    SUMA            desplazar e ir al estado 73
+    RESTA           desplazar e ir al estado 74
+    DIVISION        desplazar e ir al estado 75
+    MULTIPLICACION  desplazar e ir al estado 76
+    IGUAL           desplazar e ir al estado 77
+    DISTINTO        desplazar e ir al estado 78
+    MAYORQUE        desplazar e ir al estado 79
+    MENORQUE        desplazar e ir al estado 80
+    MAYORIGUAL      desplazar e ir al estado 81
+    MENORIGUAL      desplazar e ir al estado 82
+    OR              desplazar e ir al estado 83
+    AND             desplazar e ir al estado 84
+
+
+Estado 58
+
+   71 exp: valor .
+
+    $default  reduce usando la regla 71 (exp)
+
+
+Estado 59
+
+   43 instruccion: LLAMADA IDENTIF ABREPARENTESIS . CIERRAPARENTESIS PUNTOYCOMA
+   45            | LLAMADA IDENTIF ABREPARENTESIS . $@18 parametros_instruccion CIERRAPARENTESIS IN IDENTIF PUNTOYCOMA
+
+    CIERRAPARENTESIS  desplazar e ir al estado 85
+
+    $default  reduce usando la regla 44 ($@18)
+
+    $@18  ir al estado 86
+
+
+Estado 60
+
+   42 instruccion: IF @14 ABREPARENTESIS . exp CIERRAPARENTESIS @15 bloque_llaves $@16 ELSE $@17 bloque_llaves
+
+    IDENTIF         desplazar e ir al estado 51
+    KITTENVALUE     desplazar e ir al estado 52
+    CATVALUE        desplazar e ir al estado 53
+    KITTYVALUE      desplazar e ir al estado 54
+    NOT             desplazar e ir al estado 55
+    ABREPARENTESIS  desplazar e ir al estado 56
+
+    exp    ir al estado 87
+    valor  ir al estado 58
+
+
+Estado 61
+
+   37 instruccion: WHILE @12 ABREPARENTESIS . exp CIERRAPARENTESIS @13 bloque_llaves
+
+    IDENTIF         desplazar e ir al estado 51
+    KITTENVALUE     desplazar e ir al estado 52
+    CATVALUE        desplazar e ir al estado 53
+    KITTYVALUE      desplazar e ir al estado 54
+    NOT             desplazar e ir al estado 55
+    ABREPARENTESIS  desplazar e ir al estado 56
+
+    exp    ir al estado 88
+    valor  ir al estado 58
+
+
+Estado 62
+
+   34 instruccion: FOR $@7 ABREPARENTESIS . asignacion @8 exp @9 PUNTOYCOMA IDENTIF $@10 ASIGNA exp CIERRAPARENTESIS $@11 bloque_llaves
+
+    CAT      desplazar e ir al estado 11
+    KITTY    desplazar e ir al estado 12
+    KITTEN   desplazar e ir al estado 13
+    IDENTIF  desplazar e ir al estado 14
+
+    tipo        ir al estado 89
+    asignacion  ir al estado 90
+
+
+Estado 63
+
+   28 instruccion: LEETECLADO IDENTIF PUNTOYCOMA .
+
+    $default  reduce usando la regla 28 (instruccion)
+
+
+Estado 64
+
+   27 instruccion: ESCRIBEPANTALLA imprimir PUNTOYCOMA .
+
+    $default  reduce usando la regla 27 (instruccion)
+
+
+Estado 65
+
+   20 imprimir: imprimir CONCATENA . imprimir
+
+    IDENTIF       desplazar e ir al estado 37
+    CKITTYVALUE   desplazar e ir al estado 38
+    CKITTENVALUE  desplazar e ir al estado 39
+    KITTENVALUE   desplazar e ir al estado 40
+    CATVALUE      desplazar e ir al estado 41
+    KITTYVALUE    desplazar e ir al estado 42
+    SALTOLINEA    desplazar e ir al estado 43
+
+    imprimir  ir al estado 91
+
+
+Estado 66
+
+   50 declaracion: tipo IDENTIF PUNTOYCOMA .
+
+    $default  reduce usando la regla 50 (declaracion)
+
+
+Estado 67
+
+   55 asignacion: tipo IDENTIF $@19 . ASIGNA exp PUNTOYCOMA
+
+    ASIGNA  desplazar e ir al estado 92
+
+
+Estado 68
+
+    8 funcion: FUNCION IDENTIF . ABREPARENTESIS CIERRAPARENTESIS $@4 bloque_llaves
+   11        | FUNCION IDENTIF . ABREPARENTESIS $@5 parametros CIERRAPARENTESIS IN ABREPARENTESIS tipo IDENTIF CIERRAPARENTESIS $@6 bloque_llaves
+
+    ABREPARENTESIS  desplazar e ir al estado 93
+
+
+Estado 69
+
+    5 conjunto_funciones: funcion conjunto_funciones .
+
+    $default  reduce usando la regla 5 (conjunto_funciones)
+
+
+Estado 70
+
+   57 exp: exp . RESTA exp
+   58    | exp . MULTIPLICACION exp
+   59    | exp . SUMA exp
+   60    | exp . DIVISION exp
+   61    | exp . DISTINTO exp
+   62    | exp . IGUAL exp
+   63    | exp . MAYORQUE exp
+   64    | exp . MENORQUE exp
+   65    | exp . MENORIGUAL exp
+   66    | exp . MAYORIGUAL exp
+   67    | exp . OR exp
+   68    | exp . AND exp
+   69    | NOT exp .
+
+    SUMA            desplazar e ir al estado 73
+    RESTA           desplazar e ir al estado 74
+    DIVISION        desplazar e ir al estado 75
+    MULTIPLICACION  desplazar e ir al estado 76
+    IGUAL           desplazar e ir al estado 77
+    DISTINTO        desplazar e ir al estado 78
+    MAYORQUE        desplazar e ir al estado 79
+    MENORQUE        desplazar e ir al estado 80
+    MAYORIGUAL      desplazar e ir al estado 81
+    MENORIGUAL      desplazar e ir al estado 82
+
+    $default  reduce usando la regla 69 (exp)
+
+
+Estado 71
+
+   57 exp: exp . RESTA exp
+   58    | exp . MULTIPLICACION exp
+   59    | exp . SUMA exp
+   60    | exp . DIVISION exp
+   61    | exp . DISTINTO exp
+   62    | exp . IGUAL exp
+   63    | exp . MAYORQUE exp
+   64    | exp . MENORQUE exp
+   65    | exp . MENORIGUAL exp
+   66    | exp . MAYORIGUAL exp
+   67    | exp . OR exp
+   68    | exp . AND exp
+   70    | ABREPARENTESIS exp . CIERRAPARENTESIS
+
+    SUMA              desplazar e ir al estado 73
+    RESTA             desplazar e ir al estado 74
+    DIVISION          desplazar e ir al estado 75
+    MULTIPLICACION    desplazar e ir al estado 76
+    IGUAL             desplazar e ir al estado 77
+    DISTINTO          desplazar e ir al estado 78
+    MAYORQUE          desplazar e ir al estado 79
+    MENORQUE          desplazar e ir al estado 80
+    MAYORIGUAL        desplazar e ir al estado 81
+    MENORIGUAL        desplazar e ir al estado 82
+    OR                desplazar e ir al estado 83
+    AND               desplazar e ir al estado 84
+    CIERRAPARENTESIS  desplazar e ir al estado 94
+
+
+Estado 72
+
+   56 asignacion: IDENTIF ASIGNA exp PUNTOYCOMA .
+
+    $default  reduce usando la regla 56 (asignacion)
+
+
+Estado 73
+
+   59 exp: exp SUMA . exp
+
+    IDENTIF         desplazar e ir al estado 51
+    KITTENVALUE     desplazar e ir al estado 52
+    CATVALUE        desplazar e ir al estado 53
+    KITTYVALUE      desplazar e ir al estado 54
+    NOT             desplazar e ir al estado 55
+    ABREPARENTESIS  desplazar e ir al estado 56
+
+    exp    ir al estado 95
+    valor  ir al estado 58
+
+
+Estado 74
+
+   57 exp: exp RESTA . exp
+
+    IDENTIF         desplazar e ir al estado 51
+    KITTENVALUE     desplazar e ir al estado 52
+    CATVALUE        desplazar e ir al estado 53
+    KITTYVALUE      desplazar e ir al estado 54
+    NOT             desplazar e ir al estado 55
+    ABREPARENTESIS  desplazar e ir al estado 56
+
+    exp    ir al estado 96
+    valor  ir al estado 58
+
+
+Estado 75
+
+   60 exp: exp DIVISION . exp
+
+    IDENTIF         desplazar e ir al estado 51
+    KITTENVALUE     desplazar e ir al estado 52
+    CATVALUE        desplazar e ir al estado 53
+    KITTYVALUE      desplazar e ir al estado 54
+    NOT             desplazar e ir al estado 55
+    ABREPARENTESIS  desplazar e ir al estado 56
+
+    exp    ir al estado 97
+    valor  ir al estado 58
+
+
+Estado 76
+
+   58 exp: exp MULTIPLICACION . exp
+
+    IDENTIF         desplazar e ir al estado 51
+    KITTENVALUE     desplazar e ir al estado 52
+    CATVALUE        desplazar e ir al estado 53
+    KITTYVALUE      desplazar e ir al estado 54
+    NOT             desplazar e ir al estado 55
+    ABREPARENTESIS  desplazar e ir al estado 56
+
+    exp    ir al estado 98
+    valor  ir al estado 58
+
+
+Estado 77
+
+   62 exp: exp IGUAL . exp
+
+    IDENTIF         desplazar e ir al estado 51
+    KITTENVALUE     desplazar e ir al estado 52
+    CATVALUE        desplazar e ir al estado 53
+    KITTYVALUE      desplazar e ir al estado 54
+    NOT             desplazar e ir al estado 55
+    ABREPARENTESIS  desplazar e ir al estado 56
+
+    exp    ir al estado 99
+    valor  ir al estado 58
+
+
+Estado 78
+
+   61 exp: exp DISTINTO . exp
+
+    IDENTIF         desplazar e ir al estado 51
+    KITTENVALUE     desplazar e ir al estado 52
+    CATVALUE        desplazar e ir al estado 53
+    KITTYVALUE      desplazar e ir al estado 54
+    NOT             desplazar e ir al estado 55
+    ABREPARENTESIS  desplazar e ir al estado 56
+
+    exp    ir al estado 100
+    valor  ir al estado 58
+
+
+Estado 79
+
+   63 exp: exp MAYORQUE . exp
+
+    IDENTIF         desplazar e ir al estado 51
+    KITTENVALUE     desplazar e ir al estado 52
+    CATVALUE        desplazar e ir al estado 53
+    KITTYVALUE      desplazar e ir al estado 54
+    NOT             desplazar e ir al estado 55
+    ABREPARENTESIS  desplazar e ir al estado 56
+
+    exp    ir al estado 101
+    valor  ir al estado 58
+
+
+Estado 80
+
+   64 exp: exp MENORQUE . exp
+
+    IDENTIF         desplazar e ir al estado 51
+    KITTENVALUE     desplazar e ir al estado 52
+    CATVALUE        desplazar e ir al estado 53
+    KITTYVALUE      desplazar e ir al estado 54
+    NOT             desplazar e ir al estado 55
+    ABREPARENTESIS  desplazar e ir al estado 56
+
+    exp    ir al estado 102
+    valor  ir al estado 58
+
+
+Estado 81
+
+   66 exp: exp MAYORIGUAL . exp
+
+    IDENTIF         desplazar e ir al estado 51
+    KITTENVALUE     desplazar e ir al estado 52
+    CATVALUE        desplazar e ir al estado 53
+    KITTYVALUE      desplazar e ir al estado 54
+    NOT             desplazar e ir al estado 55
+    ABREPARENTESIS  desplazar e ir al estado 56
+
+    exp    ir al estado 103
+    valor  ir al estado 58
+
+
+Estado 82
+
+   65 exp: exp MENORIGUAL . exp
+
+    IDENTIF         desplazar e ir al estado 51
+    KITTENVALUE     desplazar e ir al estado 52
+    CATVALUE        desplazar e ir al estado 53
+    KITTYVALUE      desplazar e ir al estado 54
+    NOT             desplazar e ir al estado 55
+    ABREPARENTESIS  desplazar e ir al estado 56
+
+    exp    ir al estado 104
+    valor  ir al estado 58
+
+
+Estado 83
+
+   67 exp: exp OR . exp
+
+    IDENTIF         desplazar e ir al estado 51
+    KITTENVALUE     desplazar e ir al estado 52
+    CATVALUE        desplazar e ir al estado 53
+    KITTYVALUE      desplazar e ir al estado 54
+    NOT             desplazar e ir al estado 55
+    ABREPARENTESIS  desplazar e ir al estado 56
+
+    exp    ir al estado 105
+    valor  ir al estado 58
+
+
+Estado 84
+
+   68 exp: exp AND . exp
+
+    IDENTIF         desplazar e ir al estado 51
+    KITTENVALUE     desplazar e ir al estado 52
+    CATVALUE        desplazar e ir al estado 53
+    KITTYVALUE      desplazar e ir al estado 54
+    NOT             desplazar e ir al estado 55
+    ABREPARENTESIS  desplazar e ir al estado 56
+
+    exp    ir al estado 106
+    valor  ir al estado 58
+
+
+Estado 85
+
+   43 instruccion: LLAMADA IDENTIF ABREPARENTESIS CIERRAPARENTESIS . PUNTOYCOMA
+
+    PUNTOYCOMA  desplazar e ir al estado 107
+
+
+Estado 86
+
+   45 instruccion: LLAMADA IDENTIF ABREPARENTESIS $@18 . parametros_instruccion CIERRAPARENTESIS IN IDENTIF PUNTOYCOMA
+
+    IDENTIF  desplazar e ir al estado 108
+
+    parametros_instruccion  ir al estado 109
+
+
+Estado 87
+
+   42 instruccion: IF @14 ABREPARENTESIS exp . CIERRAPARENTESIS @15 bloque_llaves $@16 ELSE $@17 bloque_llaves
+   57 exp: exp . RESTA exp
+   58    | exp . MULTIPLICACION exp
+   59    | exp . SUMA exp
+   60    | exp . DIVISION exp
+   61    | exp . DISTINTO exp
+   62    | exp . IGUAL exp
+   63    | exp . MAYORQUE exp
+   64    | exp . MENORQUE exp
+   65    | exp . MENORIGUAL exp
+   66    | exp . MAYORIGUAL exp
+   67    | exp . OR exp
+   68    | exp . AND exp
+
+    SUMA              desplazar e ir al estado 73
+    RESTA             desplazar e ir al estado 74
+    DIVISION          desplazar e ir al estado 75
+    MULTIPLICACION    desplazar e ir al estado 76
+    IGUAL             desplazar e ir al estado 77
+    DISTINTO          desplazar e ir al estado 78
+    MAYORQUE          desplazar e ir al estado 79
+    MENORQUE          desplazar e ir al estado 80
+    MAYORIGUAL        desplazar e ir al estado 81
+    MENORIGUAL        desplazar e ir al estado 82
+    OR                desplazar e ir al estado 83
+    AND               desplazar e ir al estado 84
+    CIERRAPARENTESIS  desplazar e ir al estado 110
+
+
+Estado 88
+
+   37 instruccion: WHILE @12 ABREPARENTESIS exp . CIERRAPARENTESIS @13 bloque_llaves
+   57 exp: exp . RESTA exp
+   58    | exp . MULTIPLICACION exp
+   59    | exp . SUMA exp
+   60    | exp . DIVISION exp
+   61    | exp . DISTINTO exp
+   62    | exp . IGUAL exp
+   63    | exp . MAYORQUE exp
+   64    | exp . MENORQUE exp
+   65    | exp . MENORIGUAL exp
+   66    | exp . MAYORIGUAL exp
+   67    | exp . OR exp
+   68    | exp . AND exp
+
+    SUMA              desplazar e ir al estado 73
+    RESTA             desplazar e ir al estado 74
+    DIVISION          desplazar e ir al estado 75
+    MULTIPLICACION    desplazar e ir al estado 76
+    IGUAL             desplazar e ir al estado 77
+    DISTINTO          desplazar e ir al estado 78
+    MAYORQUE          desplazar e ir al estado 79
+    MENORQUE          desplazar e ir al estado 80
+    MAYORIGUAL        desplazar e ir al estado 81
+    MENORIGUAL        desplazar e ir al estado 82
+    OR                desplazar e ir al estado 83
+    AND               desplazar e ir al estado 84
+    CIERRAPARENTESIS  desplazar e ir al estado 111
+
+
+Estado 89
+
+   55 asignacion: tipo . IDENTIF $@19 ASIGNA exp PUNTOYCOMA
+
+    IDENTIF  desplazar e ir al estado 112
+
+
+Estado 90
+
+   34 instruccion: FOR $@7 ABREPARENTESIS asignacion . @8 exp @9 PUNTOYCOMA IDENTIF $@10 ASIGNA exp CIERRAPARENTESIS $@11 bloque_llaves
+
+    $default  reduce usando la regla 30 (@8)
+
+    @8  ir al estado 113
+
+
+Estado 91
+
+   20 imprimir: imprimir . CONCATENA imprimir
+   20         | imprimir CONCATENA imprimir .
+
+    $default  reduce usando la regla 20 (imprimir)
+
+
+Estado 92
+
+   55 asignacion: tipo IDENTIF $@19 ASIGNA . exp PUNTOYCOMA
+
+    IDENTIF         desplazar e ir al estado 51
+    KITTENVALUE     desplazar e ir al estado 52
+    CATVALUE        desplazar e ir al estado 53
+    KITTYVALUE      desplazar e ir al estado 54
+    NOT             desplazar e ir al estado 55
+    ABREPARENTESIS  desplazar e ir al estado 56
+
+    exp    ir al estado 114
+    valor  ir al estado 58
+
+
+Estado 93
+
+    8 funcion: FUNCION IDENTIF ABREPARENTESIS . CIERRAPARENTESIS $@4 bloque_llaves
+   11        | FUNCION IDENTIF ABREPARENTESIS . $@5 parametros CIERRAPARENTESIS IN ABREPARENTESIS tipo IDENTIF CIERRAPARENTESIS $@6 bloque_llaves
+
+    CIERRAPARENTESIS  desplazar e ir al estado 115
+
+    $default  reduce usando la regla 9 ($@5)
+
+    $@5  ir al estado 116
+
+
+Estado 94
+
+   70 exp: ABREPARENTESIS exp CIERRAPARENTESIS .
+
+    $default  reduce usando la regla 70 (exp)
+
+
+Estado 95
+
+   57 exp: exp . RESTA exp
+   58    | exp . MULTIPLICACION exp
+   59    | exp . SUMA exp
+   59    | exp SUMA exp .
+   60    | exp . DIVISION exp
+   61    | exp . DISTINTO exp
+   62    | exp . IGUAL exp
+   63    | exp . MAYORQUE exp
+   64    | exp . MENORQUE exp
+   65    | exp . MENORIGUAL exp
+   66    | exp . MAYORIGUAL exp
+   67    | exp . OR exp
+   68    | exp . AND exp
+
+    DIVISION        desplazar e ir al estado 75
+    MULTIPLICACION  desplazar e ir al estado 76
+    IGUAL           desplazar e ir al estado 77
+    DISTINTO        desplazar e ir al estado 78
+    MAYORQUE        desplazar e ir al estado 79
+    MENORQUE        desplazar e ir al estado 80
+    MAYORIGUAL      desplazar e ir al estado 81
+    MENORIGUAL      desplazar e ir al estado 82
+
+    $default  reduce usando la regla 59 (exp)
+
+
+Estado 96
+
+   57 exp: exp . RESTA exp
+   57    | exp RESTA exp .
+   58    | exp . MULTIPLICACION exp
+   59    | exp . SUMA exp
+   60    | exp . DIVISION exp
+   61    | exp . DISTINTO exp
+   62    | exp . IGUAL exp
+   63    | exp . MAYORQUE exp
+   64    | exp . MENORQUE exp
+   65    | exp . MENORIGUAL exp
+   66    | exp . MAYORIGUAL exp
+   67    | exp . OR exp
+   68    | exp . AND exp
+
+    DIVISION        desplazar e ir al estado 75
+    MULTIPLICACION  desplazar e ir al estado 76
+    IGUAL           desplazar e ir al estado 77
+    DISTINTO        desplazar e ir al estado 78
+    MAYORQUE        desplazar e ir al estado 79
+    MENORQUE        desplazar e ir al estado 80
+    MAYORIGUAL      desplazar e ir al estado 81
+    MENORIGUAL      desplazar e ir al estado 82
+
+    $default  reduce usando la regla 57 (exp)
+
+
+Estado 97
+
+   57 exp: exp . RESTA exp
+   58    | exp . MULTIPLICACION exp
+   59    | exp . SUMA exp
+   60    | exp . DIVISION exp
+   60    | exp DIVISION exp .
+   61    | exp . DISTINTO exp
+   62    | exp . IGUAL exp
+   63    | exp . MAYORQUE exp
+   64    | exp . MENORQUE exp
+   65    | exp . MENORIGUAL exp
+   66    | exp . MAYORIGUAL exp
+   67    | exp . OR exp
+   68    | exp . AND exp
+
+    IGUAL       desplazar e ir al estado 77
+    DISTINTO    desplazar e ir al estado 78
+    MAYORQUE    desplazar e ir al estado 79
+    MENORQUE    desplazar e ir al estado 80
+    MAYORIGUAL  desplazar e ir al estado 81
+    MENORIGUAL  desplazar e ir al estado 82
+
+    $default  reduce usando la regla 60 (exp)
+
+
+Estado 98
+
+   57 exp: exp . RESTA exp
+   58    | exp . MULTIPLICACION exp
+   58    | exp MULTIPLICACION exp .
+   59    | exp . SUMA exp
+   60    | exp . DIVISION exp
+   61    | exp . DISTINTO exp
+   62    | exp . IGUAL exp
+   63    | exp . MAYORQUE exp
+   64    | exp . MENORQUE exp
+   65    | exp . MENORIGUAL exp
+   66    | exp . MAYORIGUAL exp
+   67    | exp . OR exp
+   68    | exp . AND exp
+
+    IGUAL       desplazar e ir al estado 77
+    DISTINTO    desplazar e ir al estado 78
+    MAYORQUE    desplazar e ir al estado 79
+    MENORQUE    desplazar e ir al estado 80
+    MAYORIGUAL  desplazar e ir al estado 81
+    MENORIGUAL  desplazar e ir al estado 82
+
+    $default  reduce usando la regla 58 (exp)
+
+
+Estado 99
+
+   57 exp: exp . RESTA exp
+   58    | exp . MULTIPLICACION exp
+   59    | exp . SUMA exp
+   60    | exp . DIVISION exp
+   61    | exp . DISTINTO exp
+   62    | exp . IGUAL exp
+   62    | exp IGUAL exp .
+   63    | exp . MAYORQUE exp
+   64    | exp . MENORQUE exp
+   65    | exp . MENORIGUAL exp
+   66    | exp . MAYORIGUAL exp
+   67    | exp . OR exp
+   68    | exp . AND exp
+
+    $default  reduce usando la regla 62 (exp)
+
+
+Estado 100
+
+   57 exp: exp . RESTA exp
+   58    | exp . MULTIPLICACION exp
+   59    | exp . SUMA exp
+   60    | exp . DIVISION exp
+   61    | exp . DISTINTO exp
+   61    | exp DISTINTO exp .
+   62    | exp . IGUAL exp
+   63    | exp . MAYORQUE exp
+   64    | exp . MENORQUE exp
+   65    | exp . MENORIGUAL exp
+   66    | exp . MAYORIGUAL exp
+   67    | exp . OR exp
+   68    | exp . AND exp
+
+    $default  reduce usando la regla 61 (exp)
+
+
+Estado 101
+
+   57 exp: exp . RESTA exp
+   58    | exp . MULTIPLICACION exp
+   59    | exp . SUMA exp
+   60    | exp . DIVISION exp
+   61    | exp . DISTINTO exp
+   62    | exp . IGUAL exp
+   63    | exp . MAYORQUE exp
+   63    | exp MAYORQUE exp .
+   64    | exp . MENORQUE exp
+   65    | exp . MENORIGUAL exp
+   66    | exp . MAYORIGUAL exp
+   67    | exp . OR exp
+   68    | exp . AND exp
+
+    $default  reduce usando la regla 63 (exp)
+
+
+Estado 102
+
+   57 exp: exp . RESTA exp
+   58    | exp . MULTIPLICACION exp
+   59    | exp . SUMA exp
+   60    | exp . DIVISION exp
+   61    | exp . DISTINTO exp
+   62    | exp . IGUAL exp
+   63    | exp . MAYORQUE exp
+   64    | exp . MENORQUE exp
+   64    | exp MENORQUE exp .
+   65    | exp . MENORIGUAL exp
+   66    | exp . MAYORIGUAL exp
+   67    | exp . OR exp
+   68    | exp . AND exp
+
+    $default  reduce usando la regla 64 (exp)
+
+
+Estado 103
+
+   57 exp: exp . RESTA exp
+   58    | exp . MULTIPLICACION exp
+   59    | exp . SUMA exp
+   60    | exp . DIVISION exp
+   61    | exp . DISTINTO exp
+   62    | exp . IGUAL exp
+   63    | exp . MAYORQUE exp
+   64    | exp . MENORQUE exp
+   65    | exp . MENORIGUAL exp
+   66    | exp . MAYORIGUAL exp
+   66    | exp MAYORIGUAL exp .
+   67    | exp . OR exp
+   68    | exp . AND exp
+
+    $default  reduce usando la regla 66 (exp)
+
+
+Estado 104
+
+   57 exp: exp . RESTA exp
+   58    | exp . MULTIPLICACION exp
+   59    | exp . SUMA exp
+   60    | exp . DIVISION exp
+   61    | exp . DISTINTO exp
+   62    | exp . IGUAL exp
+   63    | exp . MAYORQUE exp
+   64    | exp . MENORQUE exp
+   65    | exp . MENORIGUAL exp
+   65    | exp MENORIGUAL exp .
+   66    | exp . MAYORIGUAL exp
+   67    | exp . OR exp
+   68    | exp . AND exp
+
+    $default  reduce usando la regla 65 (exp)
+
+
+Estado 105
+
+   57 exp: exp . RESTA exp
+   58    | exp . MULTIPLICACION exp
+   59    | exp . SUMA exp
+   60    | exp . DIVISION exp
+   61    | exp . DISTINTO exp
+   62    | exp . IGUAL exp
+   63    | exp . MAYORQUE exp
+   64    | exp . MENORQUE exp
+   65    | exp . MENORIGUAL exp
+   66    | exp . MAYORIGUAL exp
+   67    | exp . OR exp
+   67    | exp OR exp .
+   68    | exp . AND exp
+
+    SUMA            desplazar e ir al estado 73
+    RESTA           desplazar e ir al estado 74
+    DIVISION        desplazar e ir al estado 75
+    MULTIPLICACION  desplazar e ir al estado 76
+    IGUAL           desplazar e ir al estado 77
+    DISTINTO        desplazar e ir al estado 78
+    MAYORQUE        desplazar e ir al estado 79
+    MENORQUE        desplazar e ir al estado 80
+    MAYORIGUAL      desplazar e ir al estado 81
+    MENORIGUAL      desplazar e ir al estado 82
+
+    $default  reduce usando la regla 67 (exp)
+
+
+Estado 106
+
+   57 exp: exp . RESTA exp
+   58    | exp . MULTIPLICACION exp
+   59    | exp . SUMA exp
+   60    | exp . DIVISION exp
+   61    | exp . DISTINTO exp
+   62    | exp . IGUAL exp
+   63    | exp . MAYORQUE exp
+   64    | exp . MENORQUE exp
+   65    | exp . MENORIGUAL exp
+   66    | exp . MAYORIGUAL exp
+   67    | exp . OR exp
+   68    | exp . AND exp
+   68    | exp AND exp .
+
+    SUMA            desplazar e ir al estado 73
+    RESTA           desplazar e ir al estado 74
+    DIVISION        desplazar e ir al estado 75
+    MULTIPLICACION  desplazar e ir al estado 76
+    IGUAL           desplazar e ir al estado 77
+    DISTINTO        desplazar e ir al estado 78
+    MAYORQUE        desplazar e ir al estado 79
+    MENORQUE        desplazar e ir al estado 80
+    MAYORIGUAL      desplazar e ir al estado 81
+    MENORIGUAL      desplazar e ir al estado 82
+
+    $default  reduce usando la regla 68 (exp)
+
+
+Estado 107
+
+   43 instruccion: LLAMADA IDENTIF ABREPARENTESIS CIERRAPARENTESIS PUNTOYCOMA .
+
+    $default  reduce usando la regla 43 (instruccion)
+
+
+Estado 108
+
+   48 parametros_instruccion: IDENTIF . SEPARADOR parametros_instruccion
+   49                       | IDENTIF .
+
+    SEPARADOR  desplazar e ir al estado 117
+
+    $default  reduce usando la regla 49 (parametros_instruccion)
+
+
+Estado 109
+
+   45 instruccion: LLAMADA IDENTIF ABREPARENTESIS $@18 parametros_instruccion . CIERRAPARENTESIS IN IDENTIF PUNTOYCOMA
+
+    CIERRAPARENTESIS  desplazar e ir al estado 118
+
+
+Estado 110
+
+   42 instruccion: IF @14 ABREPARENTESIS exp CIERRAPARENTESIS . @15 bloque_llaves $@16 ELSE $@17 bloque_llaves
+
+    $default  reduce usando la regla 39 (@15)
+
+    @15  ir al estado 119
+
+
+Estado 111
+
+   37 instruccion: WHILE @12 ABREPARENTESIS exp CIERRAPARENTESIS . @13 bloque_llaves
+
+    $default  reduce usando la regla 36 (@13)
+
+    @13  ir al estado 120
+
+
+Estado 112
+
+   55 asignacion: tipo IDENTIF . $@19 ASIGNA exp PUNTOYCOMA
+
+    $default  reduce usando la regla 54 ($@19)
+
+    $@19  ir al estado 67
+
+
+Estado 113
+
+   34 instruccion: FOR $@7 ABREPARENTESIS asignacion @8 . exp @9 PUNTOYCOMA IDENTIF $@10 ASIGNA exp CIERRAPARENTESIS $@11 bloque_llaves
+
+    IDENTIF         desplazar e ir al estado 51
+    KITTENVALUE     desplazar e ir al estado 52
+    CATVALUE        desplazar e ir al estado 53
+    KITTYVALUE      desplazar e ir al estado 54
+    NOT             desplazar e ir al estado 55
+    ABREPARENTESIS  desplazar e ir al estado 56
+
+    exp    ir al estado 121
+    valor  ir al estado 58
+
+
+Estado 114
+
+   55 asignacion: tipo IDENTIF $@19 ASIGNA exp . PUNTOYCOMA
+   57 exp: exp . RESTA exp
+   58    | exp . MULTIPLICACION exp
+   59    | exp . SUMA exp
+   60    | exp . DIVISION exp
+   61    | exp . DISTINTO exp
+   62    | exp . IGUAL exp
+   63    | exp . MAYORQUE exp
+   64    | exp . MENORQUE exp
+   65    | exp . MENORIGUAL exp
+   66    | exp . MAYORIGUAL exp
+   67    | exp . OR exp
+   68    | exp . AND exp
+
+    PUNTOYCOMA      desplazar e ir al estado 122
+    SUMA            desplazar e ir al estado 73
+    RESTA           desplazar e ir al estado 74
+    DIVISION        desplazar e ir al estado 75
+    MULTIPLICACION  desplazar e ir al estado 76
+    IGUAL           desplazar e ir al estado 77
+    DISTINTO        desplazar e ir al estado 78
+    MAYORQUE        desplazar e ir al estado 79
+    MENORQUE        desplazar e ir al estado 80
+    MAYORIGUAL      desplazar e ir al estado 81
+    MENORIGUAL      desplazar e ir al estado 82
+    OR              desplazar e ir al estado 83
+    AND             desplazar e ir al estado 84
+
+
+Estado 115
+
+    8 funcion: FUNCION IDENTIF ABREPARENTESIS CIERRAPARENTESIS . $@4 bloque_llaves
+
+    $default  reduce usando la regla 7 ($@4)
+
+    $@4  ir al estado 123
+
+
+Estado 116
+
+   11 funcion: FUNCION IDENTIF ABREPARENTESIS $@5 . parametros CIERRAPARENTESIS IN ABREPARENTESIS tipo IDENTIF CIERRAPARENTESIS $@6 bloque_llaves
+
+    CAT     desplazar e ir al estado 11
+    KITTY   desplazar e ir al estado 12
+    KITTEN  desplazar e ir al estado 13
+
+    parametros  ir al estado 124
+    tipo        ir al estado 125
+
+
+Estado 117
+
+   48 parametros_instruccion: IDENTIF SEPARADOR . parametros_instruccion
+
+    IDENTIF  desplazar e ir al estado 108
+
+    parametros_instruccion  ir al estado 126
+
+
+Estado 118
+
+   45 instruccion: LLAMADA IDENTIF ABREPARENTESIS $@18 parametros_instruccion CIERRAPARENTESIS . IN IDENTIF PUNTOYCOMA
+
+    IN  desplazar e ir al estado 127
+
+
+Estado 119
+
+   42 instruccion: IF @14 ABREPARENTESIS exp CIERRAPARENTESIS @15 . bloque_llaves $@16 ELSE $@17 bloque_llaves
+
+    ABRELLAVE  desplazar e ir al estado 9
+
+    bloque_llaves  ir al estado 128
+
+
+Estado 120
+
+   37 instruccion: WHILE @12 ABREPARENTESIS exp CIERRAPARENTESIS @13 . bloque_llaves
+
+    ABRELLAVE  desplazar e ir al estado 9
+
+    bloque_llaves  ir al estado 129
+
+
+Estado 121
+
+   34 instruccion: FOR $@7 ABREPARENTESIS asignacion @8 exp . @9 PUNTOYCOMA IDENTIF $@10 ASIGNA exp CIERRAPARENTESIS $@11 bloque_llaves
+   57 exp: exp . RESTA exp
+   58    | exp . MULTIPLICACION exp
+   59    | exp . SUMA exp
+   60    | exp . DIVISION exp
+   61    | exp . DISTINTO exp
+   62    | exp . IGUAL exp
+   63    | exp . MAYORQUE exp
+   64    | exp . MENORQUE exp
+   65    | exp . MENORIGUAL exp
+   66    | exp . MAYORIGUAL exp
+   67    | exp . OR exp
+   68    | exp . AND exp
+
+    SUMA            desplazar e ir al estado 73
+    RESTA           desplazar e ir al estado 74
+    DIVISION        desplazar e ir al estado 75
+    MULTIPLICACION  desplazar e ir al estado 76
+    IGUAL           desplazar e ir al estado 77
+    DISTINTO        desplazar e ir al estado 78
+    MAYORQUE        desplazar e ir al estado 79
+    MENORQUE        desplazar e ir al estado 80
+    MAYORIGUAL      desplazar e ir al estado 81
+    MENORIGUAL      desplazar e ir al estado 82
+    OR              desplazar e ir al estado 83
+    AND             desplazar e ir al estado 84
+
+    $default  reduce usando la regla 31 (@9)
+
+    @9  ir al estado 130
+
+
+Estado 122
+
+   55 asignacion: tipo IDENTIF $@19 ASIGNA exp PUNTOYCOMA .
+
+    $default  reduce usando la regla 55 (asignacion)
+
+
+Estado 123
+
+    8 funcion: FUNCION IDENTIF ABREPARENTESIS CIERRAPARENTESIS $@4 . bloque_llaves
+
+    ABRELLAVE  desplazar e ir al estado 9
+
+    bloque_llaves  ir al estado 131
+
+
+Estado 124
+
+   11 funcion: FUNCION IDENTIF ABREPARENTESIS $@5 parametros . CIERRAPARENTESIS IN ABREPARENTESIS tipo IDENTIF CIERRAPARENTESIS $@6 bloque_llaves
+
+    CIERRAPARENTESIS  desplazar e ir al estado 132
+
+
+Estado 125
+
+   12 parametros: tipo . IDENTIF
+   13           | tipo . IDENTIF SEPARADOR parametros
+
+    IDENTIF  desplazar e ir al estado 133
+
+
+Estado 126
+
+   48 parametros_instruccion: IDENTIF SEPARADOR parametros_instruccion .
+
+    $default  reduce usando la regla 48 (parametros_instruccion)
+
+
+Estado 127
+
+   45 instruccion: LLAMADA IDENTIF ABREPARENTESIS $@18 parametros_instruccion CIERRAPARENTESIS IN . IDENTIF PUNTOYCOMA
+
+    IDENTIF  desplazar e ir al estado 134
+
+
+Estado 128
+
+   42 instruccion: IF @14 ABREPARENTESIS exp CIERRAPARENTESIS @15 bloque_llaves . $@16 ELSE $@17 bloque_llaves
+
+    $default  reduce usando la regla 40 ($@16)
+
+    $@16  ir al estado 135
+
+
+Estado 129
+
+   37 instruccion: WHILE @12 ABREPARENTESIS exp CIERRAPARENTESIS @13 bloque_llaves .
+
+    $default  reduce usando la regla 37 (instruccion)
+
+
+Estado 130
+
+   34 instruccion: FOR $@7 ABREPARENTESIS asignacion @8 exp @9 . PUNTOYCOMA IDENTIF $@10 ASIGNA exp CIERRAPARENTESIS $@11 bloque_llaves
+
+    PUNTOYCOMA  desplazar e ir al estado 136
+
+
+Estado 131
+
+    8 funcion: FUNCION IDENTIF ABREPARENTESIS CIERRAPARENTESIS $@4 bloque_llaves .
+
+    $default  reduce usando la regla 8 (funcion)
+
+
+Estado 132
+
+   11 funcion: FUNCION IDENTIF ABREPARENTESIS $@5 parametros CIERRAPARENTESIS . IN ABREPARENTESIS tipo IDENTIF CIERRAPARENTESIS $@6 bloque_llaves
+
+    IN  desplazar e ir al estado 137
+
+
+Estado 133
+
+   12 parametros: tipo IDENTIF .
+   13           | tipo IDENTIF . SEPARADOR parametros
+
+    SEPARADOR  desplazar e ir al estado 138
+
+    $default  reduce usando la regla 12 (parametros)
+
+
+Estado 134
+
+   45 instruccion: LLAMADA IDENTIF ABREPARENTESIS $@18 parametros_instruccion CIERRAPARENTESIS IN IDENTIF . PUNTOYCOMA
+
+    PUNTOYCOMA  desplazar e ir al estado 139
+
+
+Estado 135
+
+   42 instruccion: IF @14 ABREPARENTESIS exp CIERRAPARENTESIS @15 bloque_llaves $@16 . ELSE $@17 bloque_llaves
+
+    ELSE  desplazar e ir al estado 140
+
+
+Estado 136
+
+   34 instruccion: FOR $@7 ABREPARENTESIS asignacion @8 exp @9 PUNTOYCOMA . IDENTIF $@10 ASIGNA exp CIERRAPARENTESIS $@11 bloque_llaves
+
+    IDENTIF  desplazar e ir al estado 141
+
+
+Estado 137
+
+   11 funcion: FUNCION IDENTIF ABREPARENTESIS $@5 parametros CIERRAPARENTESIS IN . ABREPARENTESIS tipo IDENTIF CIERRAPARENTESIS $@6 bloque_llaves
+
+    ABREPARENTESIS  desplazar e ir al estado 142
+
+
+Estado 138
+
+   13 parametros: tipo IDENTIF SEPARADOR . parametros
+
+    CAT     desplazar e ir al estado 11
+    KITTY   desplazar e ir al estado 12
+    KITTEN  desplazar e ir al estado 13
+
+    parametros  ir al estado 143
+    tipo        ir al estado 125
+
+
+Estado 139
+
+   45 instruccion: LLAMADA IDENTIF ABREPARENTESIS $@18 parametros_instruccion CIERRAPARENTESIS IN IDENTIF PUNTOYCOMA .
+
+    $default  reduce usando la regla 45 (instruccion)
+
+
+Estado 140
+
+   42 instruccion: IF @14 ABREPARENTESIS exp CIERRAPARENTESIS @15 bloque_llaves $@16 ELSE . $@17 bloque_llaves
+
+    $default  reduce usando la regla 41 ($@17)
+
+    $@17  ir al estado 144
+
+
+Estado 141
+
+   34 instruccion: FOR $@7 ABREPARENTESIS asignacion @8 exp @9 PUNTOYCOMA IDENTIF . $@10 ASIGNA exp CIERRAPARENTESIS $@11 bloque_llaves
+
+    $default  reduce usando la regla 32 ($@10)
+
+    $@10  ir al estado 145
+
+
+Estado 142
+
+   11 funcion: FUNCION IDENTIF ABREPARENTESIS $@5 parametros CIERRAPARENTESIS IN ABREPARENTESIS . tipo IDENTIF CIERRAPARENTESIS $@6 bloque_llaves
+
+    CAT     desplazar e ir al estado 11
+    KITTY   desplazar e ir al estado 12
+    KITTEN  desplazar e ir al estado 13
+
+    tipo  ir al estado 146
+
+
+Estado 143
+
+   13 parametros: tipo IDENTIF SEPARADOR parametros .
+
+    $default  reduce usando la regla 13 (parametros)
+
+
+Estado 144
+
+   42 instruccion: IF @14 ABREPARENTESIS exp CIERRAPARENTESIS @15 bloque_llaves $@16 ELSE $@17 . bloque_llaves
+
+    ABRELLAVE  desplazar e ir al estado 9
+
+    bloque_llaves  ir al estado 147
+
+
+Estado 145
+
+   34 instruccion: FOR $@7 ABREPARENTESIS asignacion @8 exp @9 PUNTOYCOMA IDENTIF $@10 . ASIGNA exp CIERRAPARENTESIS $@11 bloque_llaves
+
+    ASIGNA  desplazar e ir al estado 148
+
+
+Estado 146
+
+   11 funcion: FUNCION IDENTIF ABREPARENTESIS $@5 parametros CIERRAPARENTESIS IN ABREPARENTESIS tipo . IDENTIF CIERRAPARENTESIS $@6 bloque_llaves
+
+    IDENTIF  desplazar e ir al estado 149
+
+
+Estado 147
+
+   42 instruccion: IF @14 ABREPARENTESIS exp CIERRAPARENTESIS @15 bloque_llaves $@16 ELSE $@17 bloque_llaves .
+
+    $default  reduce usando la regla 42 (instruccion)
+
+
+Estado 148
+
+   34 instruccion: FOR $@7 ABREPARENTESIS asignacion @8 exp @9 PUNTOYCOMA IDENTIF $@10 ASIGNA . exp CIERRAPARENTESIS $@11 bloque_llaves
+
+    IDENTIF         desplazar e ir al estado 51
+    KITTENVALUE     desplazar e ir al estado 52
+    CATVALUE        desplazar e ir al estado 53
+    KITTYVALUE      desplazar e ir al estado 54
+    NOT             desplazar e ir al estado 55
+    ABREPARENTESIS  desplazar e ir al estado 56
+
+    exp    ir al estado 150
+    valor  ir al estado 58
+
+
+Estado 149
+
+   11 funcion: FUNCION IDENTIF ABREPARENTESIS $@5 parametros CIERRAPARENTESIS IN ABREPARENTESIS tipo IDENTIF . CIERRAPARENTESIS $@6 bloque_llaves
+
+    CIERRAPARENTESIS  desplazar e ir al estado 151
+
+
+Estado 150
+
+   34 instruccion: FOR $@7 ABREPARENTESIS asignacion @8 exp @9 PUNTOYCOMA IDENTIF $@10 ASIGNA exp . CIERRAPARENTESIS $@11 bloque_llaves
+   57 exp: exp . RESTA exp
+   58    | exp . MULTIPLICACION exp
+   59    | exp . SUMA exp
+   60    | exp . DIVISION exp
+   61    | exp . DISTINTO exp
+   62    | exp . IGUAL exp
+   63    | exp . MAYORQUE exp
+   64    | exp . MENORQUE exp
+   65    | exp . MENORIGUAL exp
+   66    | exp . MAYORIGUAL exp
+   67    | exp . OR exp
+   68    | exp . AND exp
+
+    SUMA              desplazar e ir al estado 73
+    RESTA             desplazar e ir al estado 74
+    DIVISION          desplazar e ir al estado 75
+    MULTIPLICACION    desplazar e ir al estado 76
+    IGUAL             desplazar e ir al estado 77
+    DISTINTO          desplazar e ir al estado 78
+    MAYORQUE          desplazar e ir al estado 79
+    MENORQUE          desplazar e ir al estado 80
+    MAYORIGUAL        desplazar e ir al estado 81
+    MENORIGUAL        desplazar e ir al estado 82
+    OR                desplazar e ir al estado 83
+    AND               desplazar e ir al estado 84
+    CIERRAPARENTESIS  desplazar e ir al estado 152
+
+
+Estado 151
+
+   11 funcion: FUNCION IDENTIF ABREPARENTESIS $@5 parametros CIERRAPARENTESIS IN ABREPARENTESIS tipo IDENTIF CIERRAPARENTESIS . $@6 bloque_llaves
+
+    $default  reduce usando la regla 10 ($@6)
+
+    $@6  ir al estado 153
+
+
+Estado 152
+
+   34 instruccion: FOR $@7 ABREPARENTESIS asignacion @8 exp @9 PUNTOYCOMA IDENTIF $@10 ASIGNA exp CIERRAPARENTESIS . $@11 bloque_llaves
+
+    $default  reduce usando la regla 33 ($@11)
+
+    $@11  ir al estado 154
+
+
+Estado 153
+
+   11 funcion: FUNCION IDENTIF ABREPARENTESIS $@5 parametros CIERRAPARENTESIS IN ABREPARENTESIS tipo IDENTIF CIERRAPARENTESIS $@6 . bloque_llaves
+
+    ABRELLAVE  desplazar e ir al estado 9
+
+    bloque_llaves  ir al estado 155
+
+
+Estado 154
+
+   34 instruccion: FOR $@7 ABREPARENTESIS asignacion @8 exp @9 PUNTOYCOMA IDENTIF $@10 ASIGNA exp CIERRAPARENTESIS $@11 . bloque_llaves
+
+    ABRELLAVE  desplazar e ir al estado 9
+
+    bloque_llaves  ir al estado 156
+
+
+Estado 155
+
+   11 funcion: FUNCION IDENTIF ABREPARENTESIS $@5 parametros CIERRAPARENTESIS IN ABREPARENTESIS tipo IDENTIF CIERRAPARENTESIS $@6 bloque_llaves .
+
+    $default  reduce usando la regla 11 (funcion)
+
+
+Estado 156
+
+   34 instruccion: FOR $@7 ABREPARENTESIS asignacion @8 exp @9 PUNTOYCOMA IDENTIF $@10 ASIGNA exp CIERRAPARENTESIS $@11 bloque_llaves .
+
+    $default  reduce usando la regla 34 (instruccion)
